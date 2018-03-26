@@ -50,6 +50,12 @@ public class MainMenu extends AppCompatActivity {
 
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
         adView.loadAd(adRequest);
+
+        initClassic();
+        initNoWalls();
+        initBomb();
+        initTitle();
+        initSettings();
     }
 
     private void initClassic() {
@@ -264,10 +270,10 @@ public class MainMenu extends AppCompatActivity {
                         Animation animationTitleLeft = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_title_left);
                         animationTitleLeft.setDuration(GameSettings.ANIMATION_SHOW_TITLE_DURATION);
 
-                        Animation animationTitleMiddle = AnimationUtils.loadAnimation(MainMenu.this, R.anim.back_anim_for_title_middle);
+                        Animation animationTitleMiddle = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_title_middle);
                         animationTitleMiddle.setDuration(GameSettings.ANIMATION_SHOW_TITLE_DURATION);
 
-                        Animation animationTitleRight = AnimationUtils.loadAnimation(MainMenu.this, R.anim.back_anim_for_title_right);
+                        Animation animationTitleRight = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_title_right);
                         animationTitleRight.setDuration(GameSettings.ANIMATION_SHOW_TITLE_DURATION);
 
                         classicBtn.startAnimation(animationClassicBtn);
@@ -290,8 +296,6 @@ public class MainMenu extends AppCompatActivity {
 
                     }
                 });
-
-                settingsBtn.setAnimation(compileAnim);
             }
 
             @Override
@@ -299,5 +303,6 @@ public class MainMenu extends AppCompatActivity {
 
             }
         });
+        settingsBtn.setAnimation(compileAnim);
     }
 }
