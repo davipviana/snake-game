@@ -83,6 +83,8 @@ public class ClassicSnake extends AppCompatActivity {
         classicSnakeLayout.setBackgroundResource(R.mipmap.background_for_snake);
         classicSnakeLayout.setPaddingRelative(GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING,
                 GameSettings.LAYOUT_PADDING, GameSettings.LAYOUT_PADDING);
+        textScore = (TextView) findViewById(R.id.score);
+
         isInitialized = false;
     }
 
@@ -278,9 +280,9 @@ public class ClassicSnake extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("Score", playerScore);
         editor.commit();
-//        Intent intentScore = new Intent(ClassicSnake.this, ClassicScore.class);
-//        intentScore.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//        startActivity(intentScore);
+        Intent intentScore = new Intent(ClassicSnake.this, ClassicScore.class);
+        intentScore.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intentScore);
     }
 
     private void checkBitten() {

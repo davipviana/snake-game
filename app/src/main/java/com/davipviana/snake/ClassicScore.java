@@ -22,13 +22,29 @@ public class ClassicScore extends AppCompatActivity {
     private ImageView playAgainImageView;
     private ImageView mainMenuImageView;
 
+    private TextView gameOverTitleLeftTextView;
+    private TextView gameOverTitleRightTextView;
+    private TextView gameOverTitleMiddleTextView;
+
     private Animation animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_classic_score);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+        initTitle();
+        initScore();
+        initHighScore();
+        initPlayAgain();
+        initMainMenu();
     }
 
     private void initScore() {
@@ -98,7 +114,7 @@ public class ClassicScore extends AppCompatActivity {
             highScore = lastScore;
         }
 
-        highScoreTextView.setText(String.valueOf(highScore));
+        highScoreTextView.setText("High:" + String.valueOf(highScore));
         highScoreTextView.setTextColor(Color.WHITE);
         highScoreTextView.setGravity(Gravity.CENTER);
         highScoreTextView.setBackgroundResource(R.mipmap.menu_options);
@@ -187,10 +203,6 @@ public class ClassicScore extends AppCompatActivity {
                         Animation animationTitleMiddle = AnimationUtils.loadAnimation(ClassicScore.this, R.anim.anim_for_title_middle);
                         animationTitleMiddle.setDuration(GameSettings.ANIMATION_SHOW_TITLE_DURATION);
 
-                        TextView gameOverTitleLeftTextView = (TextView) findViewById(R.id.gameover_left);
-                        TextView gameOverTitleRightTextView = (TextView) findViewById(R.id.gameover_right);
-                        TextView gameOverTitleMiddleTextView = (TextView) findViewById(R.id.gameover_middle);
-
                         scoreTextView.startAnimation(animationScore);
                         highScoreTextView.startAnimation(animationHighScore);
                         playAgainImageView.startAnimation(animationPlayAgain);
@@ -214,7 +226,31 @@ public class ClassicScore extends AppCompatActivity {
                     }
                 });
 
-                mainMenuImageView.startAnimation(animation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        mainMenuImageView.startAnimation(animation);
+    }
+
+    private void initTitle() {
+        gameOverTitleLeftTextView = (TextView) findViewById(R.id.gameover_left);
+        gameOverTitleRightTextView = (TextView) findViewById(R.id.gameover_right);
+        gameOverTitleMiddleTextView = (TextView) findViewById(R.id.gameover_middle);
+
+        Animation animationTitleLeft = AnimationUtils.loadAnimation(ClassicScore.this, R.anim.back_anim_for_title_left);
+        animationTitleLeft.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
+        animationTitleLeft.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
 
             }
 
@@ -223,6 +259,47 @@ public class ClassicScore extends AppCompatActivity {
 
             }
         });
+        gameOverTitleLeftTextView.startAnimation(animationTitleLeft);
+
+        Animation animationTitleRight = AnimationUtils.loadAnimation(ClassicScore.this, R.anim.back_anim_for_title_right);
+        animationTitleRight.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
+        animationTitleRight.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        gameOverTitleRightTextView.startAnimation(animationTitleRight);
+
+        Animation animationTitleMiddle = AnimationUtils.loadAnimation(ClassicScore.this, R.anim.back_anim_for_title_middle);
+        animationTitleMiddle.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
+        animationTitleMiddle.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        gameOverTitleMiddleTextView.startAnimation(animationTitleMiddle);
     }
 
 }
