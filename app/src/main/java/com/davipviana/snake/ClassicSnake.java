@@ -3,11 +3,13 @@ package com.davipviana.snake;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -456,5 +458,91 @@ public class ClassicSnake extends AppCompatActivity {
                 }
             }
         }).start();
+    }
+
+    public class SwipeGestureDirector extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            boolean result = false;
+
+            if(!useButtons) {
+                try {
+                    float diffX = e2.getX() - e1.getX();
+                    float diffY = e2.getY() - e1.getY();
+                    if(Math.abs(diffX) > Math.abs(diffY)) {
+                        // Horizontal swipe
+                        if(Math.abs(diffX) > GameSettings.SWIPE_THRESH_HOLD
+                                && Math.abs(velocityX) > GameSettings.SWIPE_VELOCITY_THRESH_HOLD) {
+                            if(diffX > 0) {
+                                onSwipeRight();
+                            } else {
+                                onSwipeLeft();
+                            }
+                        }
+                        result = true;
+                    } else if (Math.abs(diffY) > GameSettings.SWIPE_THRESH_HOLD
+                            && Math.abs(velocityY) > GameSettings.SWIPE_VELOCITY_THRESH_HOLD) {
+                        // Vertical swipe
+                        if(diffY >0) {
+                            onSwipeDown();
+                        } else {
+                            onSwipeUp();
+                        }
+                        result = true;
+                    }
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return result;
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if(!isInitialized) {
+            isInitialized = true;
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            screenWidth = size.x;
+            screenHeight = size.y;
+            myHandler = new Handler();
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            gestureDetector = new GestureDetector(null, new SwipeGestureDirector());
+            head = new ImageView(this);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                    ((screenWidth * 20) / 450), ((screenHeight * 30) / 450));
+            head.setImageResource(R.mipmap.head);
+            head.setLayoutParams(layoutParams);
+            head.setX(screenWidth / 2 - head.getWidth());
+            head.setY(screenHeight / 2 - head.getHeight());
+            classicSnakeLayout.addView(head);
+
+            parts = new ArrayList<ImageView>();
+            points = new ArrayList<ImageView>();
+            parts.add(0,head);
+
+            layoutParams.setMargins(GameSettings.LAYOUT_MARGIN,
+                    GameSettings.LAYOUT_MARGIN,
+                    GameSettings.LAYOUT_MARGIN,
+                    GameSettings.LAYOUT_MARGIN);
+
+            setFoodPoints();
+            buttonsDirectionInit();
+            if(hasFocus) {
+                isPaused = false;
+                update();
+            }
+            super.onWindowFocusChanged(hasFocus);
+        }
     }
 }
