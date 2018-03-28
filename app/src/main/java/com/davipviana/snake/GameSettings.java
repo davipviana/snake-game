@@ -5,11 +5,8 @@ package com.davipviana.snake;
  */
 
 public final class GameSettings {
+
     public static final int FOOD_POINTS = 3;
-
-    public static final int NUMBER_POINTS = 20;
-
-    public static final int POINTS_BOMB_ANIMATION = 15;
 
     public static final int POINTS_ANIMATION = 4;
 
@@ -28,8 +25,6 @@ public final class GameSettings {
     public static final int SHAKE_DURATION = 500;
 
     public static final int GAME_THREAD = 80;
-
-    public static final int GAME_THREAD_BOMB = 60;
 
     public static final int SWIPE_THRESH_HOLD = 100;
     public static final int SWIPE_VELOCITY_THRESH_HOLD = 100;
