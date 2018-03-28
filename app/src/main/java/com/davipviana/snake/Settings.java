@@ -207,4 +207,73 @@ public class Settings extends AppCompatActivity {
 
         homeButton.startAnimation(compileAnimation);
     }
+
+    private void title() {
+        titleLeft = (TextView) findViewById(R.id.snake_left);
+        titleMiddle = (TextView) findViewById(R.id.snake_middle);
+        titleRight = (TextView) findViewById(R.id.snake_right);
+
+        compileAnimation = AnimationUtils.loadAnimation(Settings.this, R.anim.back_anim_for_title_left);
+        compileAnimation.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
+        compileAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        titleLeft.startAnimation(compileAnimation);
+
+        compileAnimation = AnimationUtils.loadAnimation(Settings.this, R.anim.back_anim_for_title_right);
+        compileAnimation.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
+        compileAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        titleRight.startAnimation(compileAnimation);
+
+        compileAnimation = AnimationUtils.loadAnimation(Settings.this, R.anim.back_anim_for_title_middle);
+        compileAnimation.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
+        compileAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        titleMiddle.startAnimation(compileAnimation);
+    }
 }
