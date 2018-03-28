@@ -73,6 +73,7 @@ public class Settings extends AppCompatActivity {
                 swipeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        swipeButton.setImageDrawable(null);
                         if (isSwipeOn) {
                             isSwipeOn = false;
                             swipeButton.setImageResource(R.mipmap.buttons);
@@ -120,6 +121,7 @@ public class Settings extends AppCompatActivity {
                 musicButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        musicButton.setImageDrawable(null);
                         if (isMusicOn) {
                             isMusicOn = false;
                             musicButton.setImageResource(R.mipmap.music_off);
