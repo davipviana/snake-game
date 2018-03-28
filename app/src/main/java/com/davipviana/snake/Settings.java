@@ -26,7 +26,7 @@ public class Settings extends AppCompatActivity {
 
     private Animation compileAnimation;
     private boolean isMusicOn;
-    private boolean isSwipeOn;
+    private boolean areButtonsOn;
     private RelativeLayout settingsLayout;
 
 
@@ -64,27 +64,27 @@ public class Settings extends AppCompatActivity {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 SharedPreferences preferences = getApplicationContext()
                         .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
-                isSwipeOn = preferences.getBoolean("Controls", true);
-                if(isSwipeOn) {
-                    swipeButton.setImageResource(R.mipmap.swipe);
-                } else {
+                areButtonsOn = preferences.getBoolean("UseButtonControls", true);
+                if(areButtonsOn) {
                     swipeButton.setImageResource(R.mipmap.buttons);
+                } else {
+                    swipeButton.setImageResource(R.mipmap.swipe);
                 }
                 swipeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         swipeButton.setImageDrawable(null);
-                        if (isSwipeOn) {
-                            isSwipeOn = false;
-                            swipeButton.setImageResource(R.mipmap.buttons);
-                        } else {
-                            isSwipeOn = true;
+                        if (areButtonsOn) {
+                            areButtonsOn = false;
                             swipeButton.setImageResource(R.mipmap.swipe);
+                        } else {
+                            areButtonsOn = true;
+                            swipeButton.setImageResource(R.mipmap.buttons);
                         }
                         SharedPreferences preferences = getApplicationContext()
                                 .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
-                        editor.putBoolean("Controls", isSwipeOn);
+                        editor.putBoolean("UseButtonControls", areButtonsOn);
                         editor.commit();
                     }
                 });
@@ -112,7 +112,7 @@ public class Settings extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 SharedPreferences preferences = getApplicationContext()
                         .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
-                isMusicOn = preferences.getBoolean("Music", true);
+                isMusicOn = preferences.getBoolean("PlayMusic", true);
                 if (isMusicOn) {
                     musicButton.setImageResource(R.mipmap.music_on);
                 } else {
@@ -132,7 +132,7 @@ public class Settings extends AppCompatActivity {
                         SharedPreferences preferences = getApplicationContext()
                                 .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
-                        editor.putBoolean("Music", isMusicOn);
+                        editor.putBoolean("PlayMusic", isMusicOn);
                         editor.commit();
                     }
                 });
