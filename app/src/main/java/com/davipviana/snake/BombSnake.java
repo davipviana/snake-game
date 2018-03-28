@@ -600,4 +600,8 @@ public class BombSnake extends AppCompatActivity {
             super.onWindowFocusChanged(hasFocus);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

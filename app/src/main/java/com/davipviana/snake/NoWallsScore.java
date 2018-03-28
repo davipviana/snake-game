@@ -301,4 +301,8 @@ public class NoWallsScore extends AppCompatActivity {
         });
         gameOverTitleMiddleTextView.startAnimation(animationTitleMiddle);
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

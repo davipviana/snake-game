@@ -301,4 +301,8 @@ public class BombScore extends AppCompatActivity {
         });
         gameOverTitleMiddleTextView.startAnimation(animationTitleMiddle);
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

@@ -547,4 +547,8 @@ public class NoWallsSnake extends AppCompatActivity {
             super.onWindowFocusChanged(hasFocus);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

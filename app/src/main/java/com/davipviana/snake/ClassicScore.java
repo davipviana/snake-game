@@ -302,4 +302,7 @@ public class ClassicScore extends AppCompatActivity {
         gameOverTitleMiddleTextView.startAnimation(animationTitleMiddle);
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

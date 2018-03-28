@@ -281,4 +281,8 @@ public class Settings extends AppCompatActivity {
 
         titleMiddle.startAnimation(compileAnimation);
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

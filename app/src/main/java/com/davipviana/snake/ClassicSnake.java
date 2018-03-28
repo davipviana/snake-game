@@ -547,4 +547,8 @@ public class ClassicSnake extends AppCompatActivity {
             super.onWindowFocusChanged(hasFocus);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
