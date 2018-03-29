@@ -64,7 +64,7 @@ public class Settings extends AppCompatActivity {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 SharedPreferences preferences = getApplicationContext()
                         .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
-                areButtonsOn = preferences.getBoolean("UseButtonControls", true);
+                areButtonsOn = preferences.getBoolean(GameSettings.USE_BUTTON_CONTROLS, true);
                 if(areButtonsOn) {
                     swipeButton.setImageResource(R.mipmap.buttons);
                 } else {
@@ -84,7 +84,7 @@ public class Settings extends AppCompatActivity {
                         SharedPreferences preferences = getApplicationContext()
                                 .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
-                        editor.putBoolean("UseButtonControls", areButtonsOn);
+                        editor.putBoolean(GameSettings.USE_BUTTON_CONTROLS, areButtonsOn);
                         editor.commit();
                     }
                 });
@@ -112,7 +112,7 @@ public class Settings extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 SharedPreferences preferences = getApplicationContext()
                         .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
-                isMusicOn = preferences.getBoolean("PlayMusic", true);
+                isMusicOn = preferences.getBoolean(GameSettings.PLAY_MUSIC, true);
                 if (isMusicOn) {
                     musicButton.setImageResource(R.mipmap.music_on);
                 } else {
@@ -132,7 +132,7 @@ public class Settings extends AppCompatActivity {
                         SharedPreferences preferences = getApplicationContext()
                                 .getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
-                        editor.putBoolean("PlayMusic", isMusicOn);
+                        editor.putBoolean(GameSettings.PLAY_MUSIC, isMusicOn);
                         editor.commit();
                     }
                 });

@@ -90,7 +90,7 @@ public class ClassicSnake extends AppCompatActivity {
 
     private void musicOnOff() {
         SharedPreferences preferences = getApplicationContext().getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
-        playMusic = preferences.getBoolean("PlayMusic", true);
+        playMusic = preferences.getBoolean(GameSettings.PLAY_MUSIC, true);
         musicPlayer = MediaPlayer.create(ClassicSnake.this, R.raw.music);
         if(playMusic) {
             musicPlayer.setLooping(true);
@@ -222,7 +222,7 @@ public class ClassicSnake extends AppCompatActivity {
         });
 
         SharedPreferences preferences = getApplicationContext().getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
-        useButtons = preferences.getBoolean("UseButtonControls", true);
+        useButtons = preferences.getBoolean(GameSettings.USE_BUTTON_CONTROLS, true);
         if(useButtons) {
             btnRight.setVisibility(View.VISIBLE);
             btnLeft.setVisibility(View.VISIBLE);
@@ -278,7 +278,7 @@ public class ClassicSnake extends AppCompatActivity {
         gameOver = true;
         SharedPreferences preferences = getApplicationContext().getSharedPreferences(GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("Score", playerScore);
+        editor.putInt(GameSettings.PLAYER_SCORE, playerScore);
         editor.commit();
         Intent intentScore = new Intent(ClassicSnake.this, ClassicScore.class);
         intentScore.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

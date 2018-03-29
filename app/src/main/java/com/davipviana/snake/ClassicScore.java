@@ -61,7 +61,7 @@ public class ClassicScore extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences(
                         GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
-                int playersScore = preferences.getInt("Score", 0);
+                int playersScore = preferences.getInt(GameSettings.PLAYER_SCORE, 0);
                 scoreTextView.setText("Score: " + String.valueOf(playersScore));
                 scoreTextView.setTextColor(Color.WHITE);
                 scoreTextView.setGravity(Gravity.CENTER);
@@ -106,10 +106,10 @@ public class ClassicScore extends AppCompatActivity {
         SharedPreferences preferences = getApplicationContext().getSharedPreferences(
                 GameSettings.PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        int highScore = preferences.getInt("HighScoreClassic", 0);
-        int lastScore = preferences.getInt("Score", 0);
+        int highScore = preferences.getInt(GameSettings.HIGH_SCORE_CLASSIC, 0);
+        int lastScore = preferences.getInt(GameSettings.PLAYER_SCORE, 0);
         if(lastScore > highScore) {
-            editor.putInt("HighScoreClassic", lastScore);
+            editor.putInt(GameSettings.HIGH_SCORE_CLASSIC, lastScore);
             editor.commit();
             highScore = lastScore;
         }
