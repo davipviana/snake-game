@@ -8,8 +8,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.davipviana.snake.NoWallsScore"
-    tools:showIn="@layout/activity_no_walls_score">
+    tools:context="com.davipviana.snake.NoWallsScore">
 
     <TextView
         android:id="@+id/gameover_middle"
